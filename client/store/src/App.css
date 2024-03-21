@@ -1,0 +1,17 @@
+
+body {
+  background-color: #1c201e;
+  color: #ffffff
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr min(1440px,94%) 1fr;
+  grid-template-rows: 96px auto 72px;
+}
+.container > * {
+  grid-column: 2;
+}
+.fluid {
+  grid-column: 1/-1;
+}

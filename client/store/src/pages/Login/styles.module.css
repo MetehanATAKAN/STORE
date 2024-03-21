@@ -1,0 +1,23 @@
+.sign_up {
+    border: 1px solid #737574;
+    padding: 40px;
+    border-radius: 10px;
+    width: max-content;
+    margin: auto;
+    input {
+        border-radius: 10px;
+        background-color: #737574;
+    }
+    .form_element {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    .sign_up_button {
+        background-color: #ffaf6a;
+        width: 100%;
+        font-weight: 800;
+    }
+    .form_error_message {
+        color: red;
+    }
+}

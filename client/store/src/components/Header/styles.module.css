@@ -1,0 +1,10 @@
+.header {
+   display: flex;
+   justify-content: space-between;
+   .header_item {
+   margin-left: 20px;
+   } 
+   .header_icon {
+    font-size: xx-large;
+   }
+}
