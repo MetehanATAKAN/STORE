@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 import { Input } from 'antd';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThunkDispatch } from '@reduxjs/toolkit';
@@ -28,9 +29,7 @@ const SignUp: React.FC = () => {
             email:'',
             password:''
         },
-        onSubmit: async (values) => {
-            console.log(values);
-            
+        onSubmit: async (values) => {  
             try {
                 await dispatch(SignUpAsync(values));            
             } catch (error) {

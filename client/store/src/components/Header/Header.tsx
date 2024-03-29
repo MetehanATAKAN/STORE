@@ -30,9 +30,10 @@ const Header: React.FC = () => {
     const [basketProducts, setBasketProducts] = useState<ProductsType[]>([]);
     
     const { products } = useSelector((state: { basket : BasketProductsType}) => state.basket);
-    console.log('pro1',products,basketProducts);
+    const { loading, isUser, status} = useSelector((state: { auth: AuthState }) => state.auth);
     
-
+  
+    
     const items: MenuProps['items'] = [
         {
             label:'Favorites',
@@ -48,6 +49,11 @@ const Header: React.FC = () => {
     useEffect(() => {
       setBasketProducts(products);
     }, [products])
+
+    useEffect(() => {
+        console.log(loading, isUser, status);
+    }, [isUser, loading, status])
+    
     
     return (
         <header className='container fluid'>

@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 const verifyToken = async (req,res,next) => {
     const token = req.headers['authorization'];
-
+    console.log(req.headers);
     if(!token) return res.status(403).json({error:'Token not provided'})
 
     jwt.verify(token,process.env.TOKEN_KEY,(err,decoded)=> {

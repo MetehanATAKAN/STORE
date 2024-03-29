@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import signRoutes from './routes/signRoutes.js';
 import cookieParser from 'cookie-parser';
 import productsRoutes from './routes/productsRoutes.js';
+import favoritesRoutes from './routes/favoritesRoutes.js';
 
 dotenv.config();
 
@@ -36,3 +37,4 @@ app.listen(port , () => {
 
 app.use('/auth',signRoutes);
 app.use('/products',productsRoutes);
+app.use('/favorites',favoritesRoutes);

@@ -1,7 +1,11 @@
 import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const BASE_URL = 'http://localhost:8080'; // API'nin ana URL'i
-const token = sessionStorage.getItem('token');
+const token = cookies.get('token');
+
 
 const apiRequest = async (apiName :string, method:string, data = null) => {
   // API'nin tam URL'i
@@ -12,7 +16,7 @@ const apiRequest = async (apiName :string, method:string, data = null) => {
   if (method === 'GET') {
     response = await axios.get(apiUrl,{
         headers:{
-            'Authorization' : `Bearer ${token}`
+            'Authorization' : `${token}`
         }
     });
   } else if (method === 'POST') {
@@ -24,13 +28,13 @@ const apiRequest = async (apiName :string, method:string, data = null) => {
   } else if (method === 'PUT') {
     response = await axios.put(apiUrl, data,{
         headers:{
-            Authorization : `Bearer ${token}`
+            Authorization : `${token}`
         }
     });
   } else if (method === 'DELETE') {
     response = await axios.delete(apiUrl,{
         headers:{
-            Authorization : `Bearer ${token}`
+            Authorization : `${token}`
         }
     });
   } else {

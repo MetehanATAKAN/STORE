@@ -46,7 +46,6 @@ const authSlice = createSlice({
             sessionStorage.setItem('userId',action.payload.userInfo._id)
         })
         .addCase(LoginAsync.rejected,(state,action)=> {
-            console.log(action);
             state.status = false;
             state.loading = false;
             state.user = action.payload;

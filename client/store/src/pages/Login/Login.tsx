@@ -56,8 +56,7 @@ const Login: React.FC = () => {
         validationSchema: validationSchema,
     })
     
-    console.log(user , loading ,status , isUser);
-
+  
     useEffect(() => {
       if(isUser && status) navigate('/')
     }, [isUser,status,navigate])

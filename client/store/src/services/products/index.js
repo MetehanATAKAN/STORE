@@ -35,6 +35,7 @@ export const basketProducts = async (products) => {
 }
 
 export const getAllBasketProducts = async () => {
+    console.log(userId);
     try {
         const response = await apiRequest(`products/getAllBasketProducts/${userId}`,'GET');
         return response.data;

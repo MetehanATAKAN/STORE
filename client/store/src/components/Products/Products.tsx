@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 import { HeartFilled } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { addBasketProducts, allBasketProducts } from '../../redux/slices/basket';
+import { favoritesProduct } from '../../services/favorites';
 
 const userId = sessionStorage.getItem('userId');
 
@@ -26,7 +27,7 @@ type productsTypes = {
 const Products: React.FC = () => {
 
     const dispatch = useDispatch();
-
+    
     const [products, setProducts] = useState<productsTypes[]>([]);
 
     const addBasket = async (data: productsTypes) => {
@@ -43,11 +44,21 @@ const Products: React.FC = () => {
         dispatch(addBasketProducts(data));
     }
 
+    const favorıProducts = async (data:productsTypes) => {
+       const body = {
+        userId:userId,
+        favoritesProduct:[
+            {
+                productId: data.id
+            }
+        ]
+       }
+       await favoritesProduct(body);
+    }
+
     useEffect(() => {
         const productsApi = async () => {
             const data = await getAllProducts();
-            console.log(data);
-
             const newData = data.map((item: productsTypes) => ({ ...item, basketCount: 0 }));
             setProducts(newData);
         }
@@ -80,7 +91,7 @@ const Products: React.FC = () => {
                             <p className={styles.price}> {data.price} </p>
                             <div>
                                 <Button onClick={() => addBasket(data)}>Add to Cart</Button>
-                                <HeartFilled />
+                               <span onClick={()=>favorıProducts(data)}> <HeartFilled /></span>
                             </div>
                         </div>
                     </div>

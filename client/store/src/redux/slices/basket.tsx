@@ -33,9 +33,12 @@ const basketSlice = createSlice({
 
             if(!isProducts) state.products.push({...data,basketCount:1});
             else   isProducts.basketCount += 1;      
+        },
+        favoritesProduct:(state,action) => {
+            const newData = state.products.filter(data => data.id === action.payload.id);  
         }
     }
 })
 
 export default basketSlice.reducer;
-export const { addBasketProducts, allBasketProducts } = basketSlice.actions
+export const { addBasketProducts, allBasketProducts, favoritesProduct } = basketSlice.actions

@@ -73,19 +73,21 @@ export const basketProducts = async (req, res, next) => {
 }
 
 export const getAllBasketProducts = async (req,res,next) => {
-    console.log(req);
+ 
     try {
         const id = req.params.id;
-        const {products} = await productsBasketSchema.findOne({userId:id});
-        const allProducts = await productsSchema.find({});
-        let newProducts = [];
-        products.map(data =>(
-            allProducts.map(prod => {
-                if(data.productId === prod.id) newProducts.push({...prod._doc,basketCount:data.count});
-            })
-        ));
-        console.log(newProducts);
-        res.status(200).json({messages:true,data:newProducts})
+        const result = await productsBasketSchema.findOne({userId:id});
+        if(result){
+            const allProducts = await productsSchema.find({});
+            let newProducts = [];
+            result.products.map(data =>(
+                allProducts.map(prod => {
+                    if(data.productId === prod.id) newProducts.push({...prod._doc,basketCount:data.count});
+                })
+            ));
+            return res.status(200).json({messages:true,data:newProducts})
+        }
+       else return res.status(200).json({messages:true,data:[]})
     } catch (error) {
         next(error);
     }

@@ -37,8 +37,6 @@ const RoutesIndex : React.FC = () => {
   ];
 
   useEffect(() => {
-    console.log('burada',token);
-    
     if (!token && (location.pathname !== '/login' && location.pathname !== '/sign')) navigate('/login')
   }, [navigate, token, isUser, location.pathname])
 

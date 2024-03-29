@@ -4,7 +4,7 @@ import verifyToken from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 router.post('/allFakeStoreProducts',allFakeStoreProducts);
-router.get('/getAllProducts',getAllProducts);
+router.get('/getAllProducts',verifyToken,getAllProducts);
 router.post('/basketProducts',verifyToken,basketProducts);
 router.get('/getAllBasketProducts/:id',getAllBasketProducts);
 
