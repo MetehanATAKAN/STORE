@@ -5,6 +5,7 @@ import SignUp from '../pages/SignUp/SignUp';
 import Login from '../pages/Login/Login';
 import { useSelector } from 'react-redux';
 import Basket from '../components/Basket/Basket';
+import Favorites from '../pages/Favorites/Favorites';
 
 
 
@@ -33,6 +34,10 @@ const RoutesIndex : React.FC = () => {
     {
       path: "/basket",
       element: <Basket />,
+    },
+    {
+      path: "/favorites",
+      element: <Favorites />,
     },
   ];
 

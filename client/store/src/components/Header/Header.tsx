@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../redux/slices/authSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 type ProductsType = {
     id: number,
@@ -26,7 +26,7 @@ type BasketProductsType = {
 const Header: React.FC = () => {
 
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const [basketProducts, setBasketProducts] = useState<ProductsType[]>([]);
     
     const { products } = useSelector((state: { basket : BasketProductsType}) => state.basket);
@@ -37,7 +37,8 @@ const Header: React.FC = () => {
     const items: MenuProps['items'] = [
         {
             label:'Favorites',
-            key:'0'
+            key:'0',
+            onClick:()=>navigate('/favorites')
         },
         {
             label: 'Log Out',
