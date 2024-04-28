@@ -1,4 +1,5 @@
 import favoritesSchema from '../models/Favorites.js';
+import productsSchema from '../models/Products.js';
 
 export const favoritesProduct = async (req, res, next) => {
     console.log(req.body);
@@ -26,6 +27,30 @@ export const favoritesProduct = async (req, res, next) => {
             const newFavoritesProduct = await new favoritesSchema(req.body);
             const data = await newFavoritesProduct.save();
             res.status(201).json({ status: true, data: newFavoritesProduct })
+        }
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const getAllFavoritesProduct = async (req, res, next) => {
+    
+    try {
+        const id = await req.params.id;
+        const user = await favoritesSchema.findOne({userId:id});
+        const allProducts = await productsSchema.find({});
+
+        if(user){
+            let products = [];
+            user.favoritesProduct.map(item => (
+                allProducts.find(data => {
+                    if(data.id === item.productId) products.push(data);
+                })
+            ))
+            return res.status(200).json({status:true,data:products})
+        }
+        else {
+            return res.status(409).json({message:'not user'})
         }
     } catch (error) {
         next(error);
